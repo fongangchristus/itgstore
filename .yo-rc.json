@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "wallet",
+    "packageName": "com.itgstore.wallet",
+    "packageFolder": "com/itgstore/wallet",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.7.0",
+    "jwtSecretKey": "ZjcwMTQ4YmNhNzNkNjg1NjdjZDYxYWY4Y2NjOTgyYjcyNTA0Njg2MGRkYzczZGM5OWViNzdhMjEzNjExN2EwYjIyN2EwZjEwZDg3YzY1Y2YzMTY1YjZkM2M3MzhjODlhM2VhMjY1NjdjY2FhZDk3MzQyMDU5MzBhNjY0MzI4NDU=",
+    "otherModules": []
+  },
+  "git-provider": "GitHub",
+  "git-company": "fongangchristus",
+  "repository-name": "itgstore"
+}

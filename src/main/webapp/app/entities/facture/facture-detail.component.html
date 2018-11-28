@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="facture">
+            <h2><span jhiTranslate="walletApp.facture.detail.title">Facture</span> {{facture.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="walletApp.facture.reference">Reference</span></dt>
+                <dd>
+                    <span>{{facture.reference}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.libelle">Libelle</span></dt>
+                <dd>
+                    <span>{{facture.libelle}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.dateCreation">Date Creation</span></dt>
+                <dd>
+                    <span>{{facture.dateCreation}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.dateEmission">Date Emission</span></dt>
+                <dd>
+                    <span>{{facture.dateEmission}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.dateReglement">Date Reglement</span></dt>
+                <dd>
+                    <span>{{facture.dateReglement}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.dateEcheance">Date Echeance</span></dt>
+                <dd>
+                    <span>{{facture.dateEcheance}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.montant">Montant</span></dt>
+                <dd>
+                    <span>{{facture.montant}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.partenaire">Partenaire</span></dt>
+                <dd>
+                    <div *ngIf="facture.partenaireId">
+                        <a [routerLink]="['/partenaire', facture.partenaireId, 'view']">{{facture.partenaireCode}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="facture.clientId">
+                        <a [routerLink]="['/client', facture.clientId, 'view']">{{facture.clientName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="walletApp.facture.device">Device</span></dt>
+                <dd>
+                    <div *ngIf="facture.deviceId">
+                        <a [routerLink]="['/device', facture.deviceId, 'view']">{{facture.deviceDeviceMark}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/facture', facture.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

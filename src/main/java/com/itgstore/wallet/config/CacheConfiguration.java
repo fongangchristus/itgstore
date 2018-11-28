@@ -38,6 +38,26 @@ public class CacheConfiguration {
             cm.createCache(com.itgstore.wallet.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.itgstore.wallet.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.itgstore.wallet.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Compte.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Compte.class.getName() + ".ecritureComptes", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Client.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Client.class.getName() + ".factureClientRecepteurs", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Client.class.getName() + ".devicePlientProprietaires", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Client.class.getName() + ".operationClientEmetteurs", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Facture.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Partenaire.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Partenaire.class.getName() + ".facturePartenaireEmetteurs", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Device.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Device.class.getName() + ".factureDevicePayeurs", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Device.class.getName() + ".operationDeviceEmetteurs", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Agence.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Agence.class.getName() + ".operationAgenceEmeteurs", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Agence.class.getName() + ".operationAgencePayeurs", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Ecriture.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Transaction.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Transaction.class.getName() + ".ecritureTransactions", jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Operation.class.getName(), jcacheConfiguration);
+            cm.createCache(com.itgstore.wallet.domain.Operation.class.getName() + ".transactionOperations", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

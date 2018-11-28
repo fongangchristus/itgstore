@@ -1,0 +1,96 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="walletApp.operation.home.title">Operations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-operation" [routerLink]="['/operation/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="walletApp.operation.home.createLabel">
+            Create new Operation
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="operations">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="code"><span jhiTranslate="walletApp.operation.code">Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="libelle"><span jhiTranslate="walletApp.operation.libelle">Libelle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="montant"><span jhiTranslate="walletApp.operation.montant">Montant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateOperation"><span jhiTranslate="walletApp.operation.dateOperation">Date Operation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="messageRetourt"><span jhiTranslate="walletApp.operation.messageRetourt">Message Retourt</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="operationType"><span jhiTranslate="walletApp.operation.operationType">Operation Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="clientName"><span jhiTranslate="walletApp.operation.client">Client</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="deviceDeviceMark"><span jhiTranslate="walletApp.operation.device">Device</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="agencEmetteurCode"><span jhiTranslate="walletApp.operation.agencEmetteur">Agenc Emetteur</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="agencePayeurCode"><span jhiTranslate="walletApp.operation.agencePayeur">Agence Payeur</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let operation of operations ;trackBy: trackId">
+                <td><a [routerLink]="['/operation', operation.id, 'view' ]">{{operation.id}}</a></td>
+                <td>{{operation.code}}</td>
+                <td>{{operation.libelle}}</td>
+                <td>{{operation.montant}}</td>
+                <td>{{operation.dateOperation | date:'medium'}}</td>
+                <td>{{operation.messageRetourt}}</td>
+                <td jhiTranslate="{{'walletApp.OperationType.' + operation.operationType}}">{{operation.operationType}}</td>
+                <td>
+                    <div *ngIf="operation.clientId">
+                        <a [routerLink]="['../client', operation.clientId , 'view' ]" >{{operation.clientName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="operation.deviceId">
+                        <a [routerLink]="['../device', operation.deviceId , 'view' ]" >{{operation.deviceDeviceMark}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="operation.agencEmetteurId">
+                        <a [routerLink]="['../agence', operation.agencEmetteurId , 'view' ]" >{{operation.agencEmetteurCode}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="operation.agencePayeurId">
+                        <a [routerLink]="['../agence', operation.agencePayeurId , 'view' ]" >{{operation.agencePayeurCode}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/operation', operation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/operation', operation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'operation/'+ operation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="operations && operations.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

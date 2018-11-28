@@ -1,0 +1,157 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-operation-heading" jhiTranslate="walletApp.operation.home.createOrEditLabel">Create or edit a Operation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!operation.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="operation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.code" for="field_code">Code</label>
+                    <input type="number" class="form-control" name="code" id="field_code"
+                        [(ngModel)]="operation.code" required/>
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.code?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.libelle" for="field_libelle">Libelle</label>
+                    <input type="text" class="form-control" name="libelle" id="field_libelle"
+                        [(ngModel)]="operation.libelle" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.montant" for="field_montant">Montant</label>
+                    <input type="number" class="form-control" name="montant" id="field_montant"
+                        [(ngModel)]="operation.montant" required/>
+                    <div [hidden]="!(editForm.controls.montant?.dirty && editForm.controls.montant?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.montant?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.montant?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.dateOperation" for="field_dateOperation">Date Operation</label>
+                    <div class="d-flex">
+                        <input id="field_dateOperation" type="datetime-local" class="form-control" name="dateOperation" [(ngModel)]="dateOperation"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateOperation?.dirty && editForm.controls.dateOperation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateOperation?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dateOperation?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.messageRetourt" for="field_messageRetourt">Message Retourt</label>
+                    <input type="text" class="form-control" name="messageRetourt" id="field_messageRetourt"
+                        [(ngModel)]="operation.messageRetourt" required/>
+                    <div [hidden]="!(editForm.controls.messageRetourt?.dirty && editForm.controls.messageRetourt?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.messageRetourt?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.operationType" for="field_operationType">Operation Type</label>
+                    <select class="form-control" name="operationType" [(ngModel)]="operation.operationType" id="field_operationType"  required>
+                        <option value="RETRAIT">{{'walletApp.OperationType.RETRAIT' | translate}}</option>
+                        <option value="RECHARGE_OM">{{'walletApp.OperationType.RECHARGE_OM' | translate}}</option>
+                        <option value="RECHARGE_VISA">{{'walletApp.OperationType.RECHARGE_VISA' | translate}}</option>
+                        <option value="RECHARGE_MOMO">{{'walletApp.OperationType.RECHARGE_MOMO' | translate}}</option>
+                        <option value="TRANSFERT_COMPTE_A_COMPTE">{{'walletApp.OperationType.TRANSFERT_COMPTE_A_COMPTE' | translate}}</option>
+                        <option value="TRANSFERT_VERS_SANS_COMPTE">{{'walletApp.OperationType.TRANSFERT_VERS_SANS_COMPTE' | translate}}</option>
+                        <option value="DEPOT">{{'walletApp.OperationType.DEPOT' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.operationType?.dirty && editForm.controls.operationType?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.operationType?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.client" for="field_client">Client</label>
+                    <select class="form-control" id="field_client" name="client" [(ngModel)]="operation.clientId"  required>
+                        <option *ngIf="!editForm.value.client" [ngValue]="null" selected></option>
+                        <option [ngValue]="clientOption.id" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.client?.dirty && editForm.controls.client?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.client?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.device" for="field_device">Device</label>
+                    <select class="form-control" id="field_device" name="device" [(ngModel)]="operation.deviceId"  required>
+                        <option *ngIf="!editForm.value.device" [ngValue]="null" selected></option>
+                        <option [ngValue]="deviceOption.id" *ngFor="let deviceOption of devices; trackBy: trackDeviceById">{{deviceOption.deviceMark}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.device?.dirty && editForm.controls.device?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.device?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.agencEmetteur" for="field_agencEmetteur">Agenc Emetteur</label>
+                    <select class="form-control" id="field_agencEmetteur" name="agencEmetteur" [(ngModel)]="operation.agencEmetteurId"  required>
+                        <option *ngIf="!editForm.value.agencEmetteur" [ngValue]="null" selected></option>
+                        <option [ngValue]="agenceOption.id" *ngFor="let agenceOption of agences; trackBy: trackAgenceById">{{agenceOption.code}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.agencEmetteur?.dirty && editForm.controls.agencEmetteur?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.agencEmetteur?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.operation.agencePayeur" for="field_agencePayeur">Agence Payeur</label>
+                    <select class="form-control" id="field_agencePayeur" name="agencePayeur" [(ngModel)]="operation.agencePayeurId"  required>
+                        <option *ngIf="!editForm.value.agencePayeur" [ngValue]="null" selected></option>
+                        <option [ngValue]="agenceOption.id" *ngFor="let agenceOption of agences; trackBy: trackAgenceById">{{agenceOption.code}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.agencePayeur?.dirty && editForm.controls.agencePayeur?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.agencePayeur?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

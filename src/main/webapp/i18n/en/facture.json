@@ -1,0 +1,30 @@
+{
+    "walletApp": {
+        "facture": {
+            "home": {
+                "title": "Factures",
+                "createLabel": "Create a new Facture",
+                "createOrEditLabel": "Create or edit a Facture"
+            },
+            "created": "A new Facture is created with identifier {{ param }}",
+            "updated": "A Facture is updated with identifier {{ param }}",
+            "deleted": "A Facture is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Facture {{ id }}?"
+            },
+            "detail": {
+                "title": "Facture"
+            },
+            "reference": "Reference",
+            "libelle": "Libelle",
+            "dateCreation": "Date Creation",
+            "dateEmission": "Date Emission",
+            "dateReglement": "Date Reglement",
+            "dateEcheance": "Date Echeance",
+            "montant": "Montant",
+            "partenaire": "Partenaire",
+            "client": "Client",
+            "device": "Device"
+        }
+    }
+}

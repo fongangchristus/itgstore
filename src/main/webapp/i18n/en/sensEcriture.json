@@ -1,0 +1,9 @@
+{
+    "walletApp": {
+        "SensEcriture": {
+            "null": "",
+            "DEBIT": "DEBIT",
+            "CREDIT": "CREDIT"
+        }
+    }
+}

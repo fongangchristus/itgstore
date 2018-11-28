@@ -1,0 +1,54 @@
+{
+    "name": "Device",
+    "fields": [
+        {
+            "fieldName": "deviceMark",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deviceOs",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deviceNumber",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "token",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "factureDevicePayeur",
+            "otherEntityName": "facture",
+            "otherEntityRelationshipName": "device"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "operationDeviceEmetteur",
+            "otherEntityName": "operation",
+            "otherEntityRelationshipName": "device"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20181128190505",
+    "entityTableName": "device",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

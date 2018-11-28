@@ -1,0 +1,57 @@
+{
+    "name": "Ecriture",
+    "fields": [
+        {
+            "fieldName": "montant",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contrePartie",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sensEcriture",
+            "fieldType": "SensEcriture",
+            "fieldValues": "DEBIT,CREDIT",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "compte",
+            "otherEntityName": "compte",
+            "otherEntityField": "code"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transaction",
+            "otherEntityName": "transaction",
+            "otherEntityField": "code"
+        }
+    ],
+    "changelogDate": "20181128190507",
+    "javadoc": "Ecriture entity.\n@author King83.",
+    "entityTableName": "ecriture",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

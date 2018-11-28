@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="operation">
+            <h2><span jhiTranslate="walletApp.operation.detail.title">Operation</span> {{operation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="walletApp.operation.code">Code</span></dt>
+                <dd>
+                    <span>{{operation.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.libelle">Libelle</span></dt>
+                <dd>
+                    <span>{{operation.libelle}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.montant">Montant</span></dt>
+                <dd>
+                    <span>{{operation.montant}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.dateOperation">Date Operation</span></dt>
+                <dd>
+                    <span>{{operation.dateOperation}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.messageRetourt">Message Retourt</span></dt>
+                <dd>
+                    <span>{{operation.messageRetourt}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.operationType">Operation Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'walletApp.OperationType.' + operation.operationType}}">{{operation.operationType}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="operation.clientId">
+                        <a [routerLink]="['/client', operation.clientId, 'view']">{{operation.clientName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.device">Device</span></dt>
+                <dd>
+                    <div *ngIf="operation.deviceId">
+                        <a [routerLink]="['/device', operation.deviceId, 'view']">{{operation.deviceDeviceMark}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.agencEmetteur">Agenc Emetteur</span></dt>
+                <dd>
+                    <div *ngIf="operation.agencEmetteurId">
+                        <a [routerLink]="['/agence', operation.agencEmetteurId, 'view']">{{operation.agencEmetteurCode}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="walletApp.operation.agencePayeur">Agence Payeur</span></dt>
+                <dd>
+                    <div *ngIf="operation.agencePayeurId">
+                        <a [routerLink]="['/agence', operation.agencePayeurId, 'view']">{{operation.agencePayeurCode}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/operation', operation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

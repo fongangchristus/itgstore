@@ -1,0 +1,36 @@
+{
+    "name": "Partenaire",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "facturePartenaireEmetteur",
+            "otherEntityName": "facture",
+            "otherEntityRelationshipName": "partenaire"
+        }
+    ],
+    "changelogDate": "20181128190504",
+    "entityTableName": "partenaire",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

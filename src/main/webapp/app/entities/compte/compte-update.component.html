@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-compte-heading" jhiTranslate="walletApp.compte.home.createOrEditLabel">Create or edit a Compte</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!compte.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="compte.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.code" for="field_code">Code</label>
+                    <input type="number" class="form-control" name="code" id="field_code"
+                        [(ngModel)]="compte.code" required/>
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.code?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.libelle" for="field_libelle">Libelle</label>
+                    <input type="text" class="form-control" name="libelle" id="field_libelle"
+                        [(ngModel)]="compte.libelle" required/>
+                    <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.isDebit" for="field_isDebit">Is Debit</label>
+                    <input type="checkbox" class="form-control" name="isDebit" id="field_isDebit"
+                        [(ngModel)]="compte.isDebit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.isCredit" for="field_isCredit">Is Credit</label>
+                    <input type="checkbox" class="form-control" name="isCredit" id="field_isCredit"
+                        [(ngModel)]="compte.isCredit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.isDebiteur" for="field_isDebiteur">Is Debiteur</label>
+                    <input type="checkbox" class="form-control" name="isDebiteur" id="field_isDebiteur"
+                        [(ngModel)]="compte.isDebiteur" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.isCrediteur" for="field_isCrediteur">Is Crediteur</label>
+                    <input type="checkbox" class="form-control" name="isCrediteur" id="field_isCrediteur"
+                        [(ngModel)]="compte.isCrediteur" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.soldeDebit" for="field_soldeDebit">Solde Debit</label>
+                    <input type="number" class="form-control" name="soldeDebit" id="field_soldeDebit"
+                        [(ngModel)]="compte.soldeDebit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.soldeCredit" for="field_soldeCredit">Solde Credit</label>
+                    <input type="number" class="form-control" name="soldeCredit" id="field_soldeCredit"
+                        [(ngModel)]="compte.soldeCredit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.balance" for="field_balance">Balance</label>
+                    <input type="number" class="form-control" name="balance" id="field_balance"
+                        [(ngModel)]="compte.balance" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.compte.compteClient" for="field_compteClient">Compte Client</label>
+                    <select class="form-control" id="field_compteClient" name="compteClient" [(ngModel)]="compte.compteClientId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clientOption.id" *ngFor="let clientOption of compteclients; trackBy: trackClientById">{{clientOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

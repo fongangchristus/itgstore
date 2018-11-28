@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-ecriture-heading" jhiTranslate="walletApp.ecriture.home.createOrEditLabel">Create or edit a Ecriture</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!ecriture.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="ecriture.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.ecriture.montant" for="field_montant">Montant</label>
+                    <input type="number" class="form-control" name="montant" id="field_montant"
+                        [(ngModel)]="ecriture.montant" required/>
+                    <div [hidden]="!(editForm.controls.montant?.dirty && editForm.controls.montant?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.montant?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.montant?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.ecriture.libelle" for="field_libelle">Libelle</label>
+                    <input type="text" class="form-control" name="libelle" id="field_libelle"
+                        [(ngModel)]="ecriture.libelle" required/>
+                    <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.ecriture.contrePartie" for="field_contrePartie">Contre Partie</label>
+                    <input type="text" class="form-control" name="contrePartie" id="field_contrePartie"
+                        [(ngModel)]="ecriture.contrePartie" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.ecriture.sensEcriture" for="field_sensEcriture">Sens Ecriture</label>
+                    <select class="form-control" name="sensEcriture" [(ngModel)]="ecriture.sensEcriture" id="field_sensEcriture"  required>
+                        <option value="DEBIT">{{'walletApp.SensEcriture.DEBIT' | translate}}</option>
+                        <option value="CREDIT">{{'walletApp.SensEcriture.CREDIT' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.sensEcriture?.dirty && editForm.controls.sensEcriture?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sensEcriture?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.ecriture.compte" for="field_compte">Compte</label>
+                    <select class="form-control" id="field_compte" name="compte" [(ngModel)]="ecriture.compteId"  required>
+                        <option *ngIf="!editForm.value.compte" [ngValue]="null" selected></option>
+                        <option [ngValue]="compteOption.id" *ngFor="let compteOption of comptes; trackBy: trackCompteById">{{compteOption.code}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.compte?.dirty && editForm.controls.compte?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.compte?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.ecriture.transaction" for="field_transaction">Transaction</label>
+                    <select class="form-control" id="field_transaction" name="transaction" [(ngModel)]="ecriture.transactionId"  required>
+                        <option *ngIf="!editForm.value.transaction" [ngValue]="null" selected></option>
+                        <option [ngValue]="transactionOption.id" *ngFor="let transactionOption of transactions; trackBy: trackTransactionById">{{transactionOption.code}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.transaction?.dirty && editForm.controls.transaction?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.transaction?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

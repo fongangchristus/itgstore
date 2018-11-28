@@ -1,0 +1,50 @@
+{
+    "name": "Transaction",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateTx",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ecritureTransaction",
+            "otherEntityName": "ecriture",
+            "otherEntityRelationshipName": "transaction"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "operation",
+            "otherEntityName": "operation",
+            "otherEntityField": "code"
+        }
+    ],
+    "changelogDate": "20181128190508",
+    "entityTableName": "transaction",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

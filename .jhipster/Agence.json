@@ -1,0 +1,42 @@
+{
+    "name": "Agence",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "operationAgenceEmeteur",
+            "otherEntityName": "operation",
+            "otherEntityRelationshipName": "agencEmetteur"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "operationAgencePayeur",
+            "otherEntityName": "operation",
+            "otherEntityRelationshipName": "agencePayeur"
+        }
+    ],
+    "changelogDate": "20181128190506",
+    "entityTableName": "agence",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

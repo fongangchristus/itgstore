@@ -1,0 +1,72 @@
+{
+    "name": "Compte",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isDebit",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isCredit",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isDebiteur",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isCrediteur",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "soldeDebit",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "soldeCredit",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "balance",
+            "fieldType": "Float"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "compteClient",
+            "otherEntityName": "client",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "compte"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ecritureCompte",
+            "otherEntityName": "ecriture",
+            "otherEntityRelationshipName": "compte"
+        }
+    ],
+    "changelogDate": "20181128190501",
+    "entityTableName": "compte",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

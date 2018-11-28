@@ -1,0 +1,31 @@
+{
+    "walletApp": {
+        "compte": {
+            "home": {
+                "title": "Comptes",
+                "createLabel": "Créer un nouveau Compte",
+                "createOrEditLabel": "Créer ou éditer un Compte"
+            },
+            "created": "Un nouveau Compte a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Compte avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Compte avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Compte {{ id }} ?"
+            },
+            "detail": {
+                "title": "Compte"
+            },
+            "code": "Code",
+            "libelle": "Libelle",
+            "isDebit": "Is Debit",
+            "isCredit": "Is Credit",
+            "isDebiteur": "Is Debiteur",
+            "isCrediteur": "Is Crediteur",
+            "soldeDebit": "Solde Debit",
+            "soldeCredit": "Solde Credit",
+            "balance": "Balance",
+            "compteClient": "Compte Client",
+            "ecritureCompte": "Ecriture Compte"
+        }
+    }
+}

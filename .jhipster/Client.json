@@ -1,0 +1,62 @@
+{
+    "name": "Client",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cni",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "factureClientRecepteur",
+            "otherEntityName": "facture",
+            "otherEntityRelationshipName": "client"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "devicePlientProprietaire",
+            "otherEntityName": "device",
+            "otherEntityRelationshipName": "client"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "operationClientEmetteur",
+            "otherEntityName": "operation",
+            "otherEntityRelationshipName": "client"
+        }
+    ],
+    "changelogDate": "20181128190502",
+    "entityTableName": "client",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

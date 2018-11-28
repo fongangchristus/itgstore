@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="compte">
+            <h2><span jhiTranslate="walletApp.compte.detail.title">Compte</span> {{compte.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="walletApp.compte.code">Code</span></dt>
+                <dd>
+                    <span>{{compte.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.libelle">Libelle</span></dt>
+                <dd>
+                    <span>{{compte.libelle}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.isDebit">Is Debit</span></dt>
+                <dd>
+                    <span>{{compte.isDebit}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.isCredit">Is Credit</span></dt>
+                <dd>
+                    <span>{{compte.isCredit}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.isDebiteur">Is Debiteur</span></dt>
+                <dd>
+                    <span>{{compte.isDebiteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.isCrediteur">Is Crediteur</span></dt>
+                <dd>
+                    <span>{{compte.isCrediteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.soldeDebit">Solde Debit</span></dt>
+                <dd>
+                    <span>{{compte.soldeDebit}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.soldeCredit">Solde Credit</span></dt>
+                <dd>
+                    <span>{{compte.soldeCredit}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.balance">Balance</span></dt>
+                <dd>
+                    <span>{{compte.balance}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.compte.compteClient">Compte Client</span></dt>
+                <dd>
+                    <div *ngIf="compte.compteClientId">
+                        <a [routerLink]="['/client', compte.compteClientId, 'view']">{{compte.compteClientId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/compte', compte.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

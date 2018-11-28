@@ -1,0 +1,27 @@
+{
+    "walletApp": {
+        "device": {
+            "home": {
+                "title": "Devices",
+                "createLabel": "Create a new Device",
+                "createOrEditLabel": "Create or edit a Device"
+            },
+            "created": "A new Device is created with identifier {{ param }}",
+            "updated": "A Device is updated with identifier {{ param }}",
+            "deleted": "A Device is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Device {{ id }}?"
+            },
+            "detail": {
+                "title": "Device"
+            },
+            "deviceMark": "Device Mark",
+            "deviceOs": "Device Os",
+            "deviceNumber": "Device Number",
+            "token": "Token",
+            "factureDevicePayeur": "Facture Device Payeur",
+            "operationDeviceEmetteur": "Operation Device Emetteur",
+            "client": "Client"
+        }
+    }
+}

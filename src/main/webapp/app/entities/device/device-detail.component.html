@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="device">
+            <h2><span jhiTranslate="walletApp.device.detail.title">Device</span> {{device.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="walletApp.device.deviceMark">Device Mark</span></dt>
+                <dd>
+                    <span>{{device.deviceMark}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.device.deviceOs">Device Os</span></dt>
+                <dd>
+                    <span>{{device.deviceOs}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.device.deviceNumber">Device Number</span></dt>
+                <dd>
+                    <span>{{device.deviceNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.device.token">Token</span></dt>
+                <dd>
+                    <span>{{device.token}}</span>
+                </dd>
+                <dt><span jhiTranslate="walletApp.device.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="device.clientId">
+                        <a [routerLink]="['/client', device.clientId, 'view']">{{device.clientName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/device', device.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

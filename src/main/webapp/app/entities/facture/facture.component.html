@@ -1,0 +1,92 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="walletApp.facture.home.title">Factures</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-facture" [routerLink]="['/facture/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="walletApp.facture.home.createLabel">
+            Create new Facture
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="factures">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="reference"><span jhiTranslate="walletApp.facture.reference">Reference</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="libelle"><span jhiTranslate="walletApp.facture.libelle">Libelle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateCreation"><span jhiTranslate="walletApp.facture.dateCreation">Date Creation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateEmission"><span jhiTranslate="walletApp.facture.dateEmission">Date Emission</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateReglement"><span jhiTranslate="walletApp.facture.dateReglement">Date Reglement</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateEcheance"><span jhiTranslate="walletApp.facture.dateEcheance">Date Echeance</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="montant"><span jhiTranslate="walletApp.facture.montant">Montant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="partenaireCode"><span jhiTranslate="walletApp.facture.partenaire">Partenaire</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="clientName"><span jhiTranslate="walletApp.facture.client">Client</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="deviceDeviceMark"><span jhiTranslate="walletApp.facture.device">Device</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let facture of factures ;trackBy: trackId">
+                <td><a [routerLink]="['/facture', facture.id, 'view' ]">{{facture.id}}</a></td>
+                <td>{{facture.reference}}</td>
+                <td>{{facture.libelle}}</td>
+                <td>{{facture.dateCreation | date:'medium'}}</td>
+                <td>{{facture.dateEmission | date:'medium'}}</td>
+                <td>{{facture.dateReglement | date:'medium'}}</td>
+                <td>{{facture.dateEcheance | date:'medium'}}</td>
+                <td>{{facture.montant}}</td>
+                <td>
+                    <div *ngIf="facture.partenaireId">
+                        <a [routerLink]="['../partenaire', facture.partenaireId , 'view' ]" >{{facture.partenaireCode}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="facture.clientId">
+                        <a [routerLink]="['../client', facture.clientId , 'view' ]" >{{facture.clientName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="facture.deviceId">
+                        <a [routerLink]="['../device', facture.deviceId , 'view' ]" >{{facture.deviceDeviceMark}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/facture', facture.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/facture', facture.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'facture/'+ facture.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="factures && factures.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

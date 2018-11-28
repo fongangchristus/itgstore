@@ -1,0 +1,168 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-facture-heading" jhiTranslate="walletApp.facture.home.createOrEditLabel">Create or edit a Facture</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!facture.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="facture.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.reference" for="field_reference">Reference</label>
+                    <input type="text" class="form-control" name="reference" id="field_reference"
+                        [(ngModel)]="facture.reference" required/>
+                    <div [hidden]="!(editForm.controls.reference?.dirty && editForm.controls.reference?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.reference?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.libelle" for="field_libelle">Libelle</label>
+                    <input type="text" class="form-control" name="libelle" id="field_libelle"
+                        [(ngModel)]="facture.libelle" required/>
+                    <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.dateCreation" for="field_dateCreation">Date Creation</label>
+                    <div class="d-flex">
+                        <input id="field_dateCreation" type="datetime-local" class="form-control" name="dateCreation" [(ngModel)]="dateCreation"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateCreation?.dirty && editForm.controls.dateCreation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateCreation?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dateCreation?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.dateEmission" for="field_dateEmission">Date Emission</label>
+                    <div class="d-flex">
+                        <input id="field_dateEmission" type="datetime-local" class="form-control" name="dateEmission" [(ngModel)]="dateEmission"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateEmission?.dirty && editForm.controls.dateEmission?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateEmission?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dateEmission?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.dateReglement" for="field_dateReglement">Date Reglement</label>
+                    <div class="d-flex">
+                        <input id="field_dateReglement" type="datetime-local" class="form-control" name="dateReglement" [(ngModel)]="dateReglement"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateReglement?.dirty && editForm.controls.dateReglement?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateReglement?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dateReglement?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.dateEcheance" for="field_dateEcheance">Date Echeance</label>
+                    <div class="d-flex">
+                        <input id="field_dateEcheance" type="datetime-local" class="form-control" name="dateEcheance" [(ngModel)]="dateEcheance"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateEcheance?.dirty && editForm.controls.dateEcheance?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateEcheance?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dateEcheance?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.montant" for="field_montant">Montant</label>
+                    <input type="number" class="form-control" name="montant" id="field_montant"
+                        [(ngModel)]="facture.montant" required/>
+                    <div [hidden]="!(editForm.controls.montant?.dirty && editForm.controls.montant?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.montant?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.montant?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.partenaire" for="field_partenaire">Partenaire</label>
+                    <select class="form-control" id="field_partenaire" name="partenaire" [(ngModel)]="facture.partenaireId"  required>
+                        <option *ngIf="!editForm.value.partenaire" [ngValue]="null" selected></option>
+                        <option [ngValue]="partenaireOption.id" *ngFor="let partenaireOption of partenaires; trackBy: trackPartenaireById">{{partenaireOption.code}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.partenaire?.dirty && editForm.controls.partenaire?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.partenaire?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.client" for="field_client">Client</label>
+                    <select class="form-control" id="field_client" name="client" [(ngModel)]="facture.clientId"  required>
+                        <option *ngIf="!editForm.value.client" [ngValue]="null" selected></option>
+                        <option [ngValue]="clientOption.id" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.client?.dirty && editForm.controls.client?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.client?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="walletApp.facture.device" for="field_device">Device</label>
+                    <select class="form-control" id="field_device" name="device" [(ngModel)]="facture.deviceId"  required>
+                        <option *ngIf="!editForm.value.device" [ngValue]="null" selected></option>
+                        <option [ngValue]="deviceOption.id" *ngFor="let deviceOption of devices; trackBy: trackDeviceById">{{deviceOption.deviceMark}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.device?.dirty && editForm.controls.device?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.device?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

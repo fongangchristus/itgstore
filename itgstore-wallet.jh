@@ -1,0 +1,125 @@
+entity Compte {
+	code Integer required,
+    libelle String required,
+    isDebit Boolean,
+    isCredit Boolean,
+    isDebiteur Boolean,
+    isCrediteur Boolean,
+    soldeDebit Float,
+    soldeCredit Float,
+    balance Float
+}
+
+entity Client {
+	name String required,
+    phoneNumber String required,
+    email String required,
+    cni String required
+}
+
+// an ignored comment
+/** not an ignored comment */
+
+entity Facture {
+	reference String required,
+	libelle String required,
+	dateCreation Instant required,
+	dateEmission Instant required,
+    dateReglement Instant required,
+    dateEcheance Instant required,
+    montant Float required
+}
+
+entity Partenaire{
+	code Integer required,
+    libelle String required
+}
+
+entity Device {
+	deviceMark String,
+	deviceOs String,
+	deviceNumber Long,
+	token String required
+}
+
+entity Agence {
+	code Integer required,
+    libelle String required
+}
+
+/**
+ * Ecriture entity.
+ * @author King83.
+ */
+entity Ecriture {
+	montant Float required,
+	libelle String required,
+    contrePartie String,
+    sensEcriture SensEcriture required
+}
+
+
+entity Transaction {
+	code Integer required,
+	libelle String required,
+	dateTx Instant required
+}
+
+entity Operation {
+	code Integer required,
+	libelle String,
+	montant Float required,
+    dateOperation Instant required,
+    messageRetourt String required,
+    operationType OperationType required
+}
+
+enum OperationType {
+    RETRAIT,
+    RECHARGE_OM,
+    RECHARGE_VISA,
+    RECHARGE_MOMO,
+    TRANSFERT_COMPTE_A_COMPTE,
+    TRANSFERT_VERS_SANS_COMPTE,
+    DEPOT
+}
+
+enum SensEcriture {
+    DEBIT,
+    CREDIT
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Partenaire{facturePartenaireEmetteur} to Facture{partenaire(code) required},
+    Client{factureClientRecepteur} to Facture{client(name) required},
+    Device{factureDevicePayeur} to Facture{device(deviceMark) required},
+	Client{devicePlientProprietaire} to Device{client(name) required},
+    Client{operationClientEmetteur} to Operation{client(name) required},
+    Device{operationDeviceEmetteur} to Operation{device(deviceMark) required},
+	Compte{ecritureCompte} to Ecriture{compte(code) required},
+    Transaction{ecritureTransaction} to Ecriture{Transaction(code) required},
+    Operation{transactionOperation} to Transaction{operation(code) required},
+    Agence{operationAgenceEmeteur} to Operation{agencEmetteur(code) required},
+    Agence{operationAgencePayeur} to Operation{agencePayeur(code) required}
+}
+// defining multiple oneToOne relationships
+relationship OneToOne {
+    Compte{CompteClient} to Client
+}
+// Set pagination options
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceClass
+
+// set filter
+filter *
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+

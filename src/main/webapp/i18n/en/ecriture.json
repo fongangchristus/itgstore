@@ -1,0 +1,26 @@
+{
+    "walletApp": {
+        "ecriture": {
+            "home": {
+                "title": "Ecritures",
+                "createLabel": "Create a new Ecriture",
+                "createOrEditLabel": "Create or edit a Ecriture"
+            },
+            "created": "A new Ecriture is created with identifier {{ param }}",
+            "updated": "A Ecriture is updated with identifier {{ param }}",
+            "deleted": "A Ecriture is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ecriture {{ id }}?"
+            },
+            "detail": {
+                "title": "Ecriture"
+            },
+            "montant": "Montant",
+            "libelle": "Libelle",
+            "contrePartie": "Contre Partie",
+            "sensEcriture": "Sens Ecriture",
+            "compte": "Compte",
+            "transaction": "Transaction"
+        }
+    }
+}
